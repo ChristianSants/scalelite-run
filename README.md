@@ -76,3 +76,26 @@ Now, the scalelite server is running, but it is not quite yet ready. The databas
 ```
 docker exec -i scalelite-api bundle exec rake db:setup
 ```
+
+# Extras
+
+Sessão com alguns auxilios que achei necessário para a instalação.
+
+## Instalação do scalelite
+
+- Antes de rodar o docker-compose up -d execute o ./init-letsencrypt.sh (**se não tiver certificado ssl na pasta data/certbot/**), após rodar o ./init-letsencrypt.sh rode o docker-compose up -d;
+- Execute o docker exec -i scalelite-api bundle exec rake db:setup;
+- Execute o docker exec -i scalelite-api bundle exec rake db:migrate;
+
+## Compartilhamento de gravações entre Scalelite e BBB
+
+Após executar os passos desse tutorial:
+
+https://jffederico.medium.com/scalelite-lazy-deployment-part-ii-ca3e4bf82f8d
+
+- Acesse seu ec2 do scalelite e libere a porta de ssh para o ip público do server BBB;
+
+- Acesse a sua instancia do BBB:
+    - Acesse o caminho /usr/local/bigbluebutton/core/scripts/post_publish
+    - edite o arquivo post_publish_scalelite.rb
+    - altere a linha que tem isso ``` system('rsync', '--verbose', '--remove-source-files', '--protect-args', *extra_rsync_opts, archive_file, spool_dir) \ ``` para ``` system('rsync', '-e', 'ssh -i /home/bigbluebutton/.ssh/id_rsa', '--verbose', '--remove-source-files', '--protect-args', *extra_rsync_opts, archive_file, spool_dir) \ ```
