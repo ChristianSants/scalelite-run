@@ -106,3 +106,15 @@ https://jffederico.medium.com/scalelite-lazy-deployment-part-ii-ca3e4bf82f8d
     - Acesse o caminho /usr/local/bigbluebutton/core/scripts/post_publish
     - edite o arquivo post_publish_scalelite.rb
     - altere a linha que tem isso ``` system('rsync', '--verbose', '--remove-source-files', '--protect-args', *extra_rsync_opts, archive_file, spool_dir) \ ``` para ``` system('rsync', '-e', 'ssh -i /home/bigbluebutton/.ssh/id_rsa', '--verbose', '--remove-source-files', '--protect-args', *extra_rsync_opts, archive_file, spool_dir) \ ```
+    - crie um arquivo dentro do bbb:  ```sudo -u bigbluebutton touch /home/bigbluebutton/.ssh/config ```;
+    - edite:  ```sudo -u bigbluebutton nano /home/bigbluebutton/.ssh/config ```;
+    Coloque isso dentro: 
+     ```
+         Host scalelite-spool
+          HostName scalelite.avaedus.com.br
+          User bigbluebutton
+          Port 22
+          IdentityFile /home/bigbluebutton/.ssh/id_rsa
+          IdentitiesOnly yes
+     ```
+    - ajuste a permissaõ:  ```sudo -u bigbluebutton chmod 600 /home/bigbluebutton/.ssh/config ```
