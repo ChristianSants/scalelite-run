@@ -118,3 +118,12 @@ https://jffederico.medium.com/scalelite-lazy-deployment-part-ii-ca3e4bf82f8d
           IdentitiesOnly yes
      ```
     - ajuste a permissaõ:  ```sudo -u bigbluebutton chmod 600 /home/bigbluebutton/.ssh/config ```
+ 
+    - Obs:
+    - Comando para rodar manualmente o post_publish_scalelite: ```sudo -u bigbluebutton ruby /usr/local/bigbluebutton/core/scripts/post_publish/post_publish_scalelite.rb -m d6209c14d7b6ed89ff89e13e9209a759944d94db-1744136724402```
+    - Case queira instalar as coisas que o ruby pedir:
+  ```
+     sudo apt-get update
+    sudo apt-get install -y ruby-dev libsystemd-dev
+    sudo gem install redis builder nokogiri loofah open4 absolute_time journald-logger
+ ```
