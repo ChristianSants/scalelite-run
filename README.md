@@ -126,3 +126,10 @@ https://jffederico.medium.com/scalelite-lazy-deployment-part-ii-ca3e4bf82f8d
        sudo gem install redis builder nokogiri loofah open4 absolute_time journald-logger
      ```
     - Após isso, as novas gravações vão ser transferidas automaticamente.
+
+ ## Ajustes BBB
+
+ Para remover o modal de boas vindas faça isso:
+ - ```sudo nano /usr/share/bigbluebutton/html5-client/private/config/settings.yml```
+ - mude a variavel **showSessionDetailsOnJoin** de true para false
+ - reinicie o bbb: ```sudo bbb-conf --restart```
