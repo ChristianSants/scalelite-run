@@ -94,6 +94,19 @@ Sessão com alguns auxilios que achei necessário para a instalação.
 - Execute o docker exec -i scalelite-api bundle exec rake db:setup;
 - Execute o docker exec -i scalelite-api bundle exec rake db:migrate;
 
+### Renovação de certificado automática
+Acesse o crontab:
+```
+crontab -e
+```
+
+Coloque este trecho:
+```
+0 3 25 * * cd /home/ubuntu/scalelite-run-redis-2 && ./renew-cert.sh
+```
+
+Obs: coloque o seu caminho para o cd e ajuste o arquivo renew-cert.sh para seu dominio!
+
 ## Compartilhamento de gravações entre Scalelite e BBB
 
 Após executar os passos desse tutorial:
